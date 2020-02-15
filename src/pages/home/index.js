@@ -1,5 +1,5 @@
 import React from "react";
-import CharacterList from "../../components/list/characters";
+import CharacterList from "../../components/lists/characters";
 
 function Home() {
   return <div>

@@ -7,7 +7,8 @@ import {
 const initialState = {
   error: {},
   pending: false,
-  characters: []
+  characters: [],
+  pagination: {},
 };
 
 export const characters = (state = initialState, action) => {
@@ -17,7 +18,8 @@ export const characters = (state = initialState, action) => {
         ...state,
         pending: false,
         error: {},
-        characters: action.data,
+        characters: [...state.characters, ...action.data.results],
+        pagination: action.data.info,
       };
 
     case FETCH_CHARACTERS_PENDING:

@@ -3,7 +3,7 @@ import {
   FETCH_CHARACTERS_PENDING,
   FETCH_CHARACTERS_REJECTED
 } from '../constants/characters';
-
+import Api from '../../services/api';
 
 const fulfilled = data => ({
   type: FETCH_CHARACTERS_FULFILLED,
@@ -19,11 +19,11 @@ const pending = () => ({
   type: FETCH_CHARACTERS_PENDING
 });
 
-export const getCharacters = () => dispatch => {
+export const getCharacters = (page) => dispatch => {
   dispatch(pending());
-  //Todo MUST use axios service
-  //Todo MUST integrate rick and morty api
-  setTimeout(() => {
-    dispatch(fulfilled(['a','b','c']))
-  }, 1000);
+  return Api.getCharacters(page).then(response => {
+    dispatch(fulfilled(response.data.data.characters))
+  }).catch(err => {
+    dispatch(rejected(err))
+  })
 };
