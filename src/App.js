@@ -9,6 +9,7 @@ import theme from './theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import CharacterDetail from "./pages/characterDetail";
+import Header from "./components/header";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/character/:id" component={CharacterDetail} />

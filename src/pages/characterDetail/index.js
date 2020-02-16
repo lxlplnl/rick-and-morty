@@ -10,14 +10,19 @@ import { getCharacter } from "../../redux/actions/character";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { useStyles } from "./styles";
+import { setHeader } from "../../redux/actions/runtime";
 
 
-function CharacterDetail({ getCharacter, character, pending }) {
+function CharacterDetail({ setHeader, getCharacter, character, pending }) {
   const params = useParams();
   const history = useHistory();
   const classes = useStyles();
 
-  const { id, name, image, location, episode } = character;
+  const { name, image, location, episode } = character;
+
+  useEffect(() => {
+    setHeader({ title: 'Character Detail', leftIconKey: 'back' })
+  }, [setHeader]);
 
   useEffect(() => {
     const id = parseInt(params.id, 10);
@@ -33,7 +38,7 @@ function CharacterDetail({ getCharacter, character, pending }) {
   return <Container>
     {pending && <CircularProgress />}
     {!pending &&
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className={classes.paper}>
       <Grid item>
         <Card className={classes.root}>
           <CardMedia
@@ -54,15 +59,13 @@ function CharacterDetail({ getCharacter, character, pending }) {
       </Grid>
 
       <Grid item className={classes.item}>
-        <Paper>
-          <Container>
+        <Paper className={classes.paper}>
             <Typography gutterBottom variant="h5" component="h3">
               Last 5 Episode
             </Typography>
             {episode.map(episode => {
               return <Typography color="textSecondary">{episode.name}</Typography>
             })}
-          </Container>
         </Paper>
       </Grid>
     </Grid>
@@ -85,7 +88,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getCharacter
+  getCharacter,
+  setHeader
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterDetail);

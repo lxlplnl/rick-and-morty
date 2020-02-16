@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CharacterList from "../../components/lists/characters";
 import { Container } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { connect } from "react-redux";
+import { setHeader } from "../../redux/actions/runtime";
 
-function Home() {
+function Home({ setHeader }) {
+  useEffect(() => {
+    setHeader({ title: 'Characters', leftIconKey: null })
+  }, []);
+
   return <Container>
-    <Typography variant="h3" >
-      Characters
-    </Typography>
     <CharacterList />
   </Container>
 }
 
-export default Home;
+export default connect(undefined, { setHeader })(Home);

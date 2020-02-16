@@ -9,7 +9,6 @@ function CharacterList({ getCharacters, characters, pending }) {
 
   useEffect(() => {
     getCharacters(page)
-    console.log("page", page)
   }, [getCharacters, page]);
 
   return <div>

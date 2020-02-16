@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 300,
   },
@@ -11,5 +11,8 @@ export const useStyles = makeStyles({
   },
   item: {
     flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
   }
-});
+}));
