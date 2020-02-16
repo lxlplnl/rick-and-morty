@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { CircularProgress, Container } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from "react-redux";
 import Card from "@material-ui/core/Card";
@@ -11,6 +11,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { useStyles } from "./styles";
 import { setHeader } from "../../redux/actions/runtime";
+import { Loader } from "../../components/loader";
 
 
 function CharacterDetail({ setHeader, getCharacter, character, pending }) {
@@ -36,7 +37,7 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
 
 
   return <Container>
-    {pending && <CircularProgress />}
+    <Loader pending={pending} />
     {!pending &&
     <Grid container spacing={3} className={classes.paper}>
       <Grid item>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getCharacters } from "../../../redux/actions/characters";
 import CharacterItem from "./item";
 import List from "@material-ui/core/List";
+import { Loader } from "../../loader";
 
 function CharacterList({ getCharacters, characters, pending }) {
   const [page, setPage] = useState(1);
@@ -12,10 +13,10 @@ function CharacterList({ getCharacters, characters, pending }) {
   }, [getCharacters, page]);
 
   return <div>
+    <Loader pending={pending} />
     <List>
       {characters.map(character => <CharacterItem key={character.id} {...character} />)}
     </List>
-    {pending && <p>Loading</p>}
   </div>
 }
 
