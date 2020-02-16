@@ -25,6 +25,24 @@ class _Api {
       }
     })
   }
+
+  getCharacter = (id) => {
+    return this.requester({
+      method: 'POST',
+      data: {
+        operationName: null,
+        variables: {},
+        query: `
+        {
+          character(id: ${id}) {
+            id, name, image, 
+            location {id,name,type}
+            episode {id,name}
+          }
+        }`
+      }
+    })
+  }
 }
 
 const Api = new _Api(axiosInstance);

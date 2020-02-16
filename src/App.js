@@ -8,6 +8,7 @@ import NotFound from "./pages/notFound";
 import theme from './theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
+import CharacterDetail from "./pages/characterDetail";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/character/:id" component={CharacterDetail} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
