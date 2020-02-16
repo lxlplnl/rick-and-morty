@@ -1,11 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
 
 function CharacterItem({ id, name, image }) {
-  return <li>
-    <Link to={'/' + id}>{name}</Link>
-  </li>
-
+  return <ListItem component={"a"} button>
+      <ListItemAvatar>
+        <Avatar
+          alt={`${name}'s avatar`}
+          src={image}
+        />
+    </ListItemAvatar>
+    <ListItemText primary={name} />
+  </ListItem>
 }
 
 export default CharacterItem;

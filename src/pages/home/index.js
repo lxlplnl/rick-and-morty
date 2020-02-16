@@ -1,11 +1,15 @@
 import React from "react";
 import CharacterList from "../../components/lists/characters";
+import { Container } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 function Home() {
-  return <div>
-    <h1>This is Home Page</h1>
+  return <Container>
+    <Typography variant="h3" >
+      Characters
+    </Typography>
     <CharacterList />
-  </div>
+  </Container>
 }
 
 export default Home;

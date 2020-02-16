@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getCharacters } from "../../../redux/actions/characters";
 import CharacterItem from "./item";
+import List from "@material-ui/core/List";
 
 function CharacterList({ getCharacters, characters, pending }) {
   const [page, setPage] = useState(1);
@@ -12,9 +13,9 @@ function CharacterList({ getCharacters, characters, pending }) {
   }, [getCharacters, page]);
 
   return <div>
-    <ul>
+    <List>
       {characters.map(character => <CharacterItem key={character.id} {...character} />)}
-    </ul>
+    </List>
     {pending && <p>Loading</p>}
   </div>
 }
