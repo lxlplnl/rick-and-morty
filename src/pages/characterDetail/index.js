@@ -13,7 +13,6 @@ import { useStyles } from "./styles";
 import { setHeader } from "../../redux/actions/runtime";
 import { Loader } from "../../components/loader";
 
-
 function CharacterDetail({ setHeader, getCharacter, character, pending }) {
   const params = useParams();
   const history = useHistory();
@@ -62,10 +61,10 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
       <Grid item className={classes.item}>
         <Paper className={classes.paper}>
             <Typography gutterBottom variant="h5" component="h3">
-              Last 5 Episode
+              Last 5 Episodes
             </Typography>
-            {episode.map(episode => {
-              return <Typography color="textSecondary">{episode.name}</Typography>
+            {episode.map(ep => {
+              return <Typography key={ep.id}>{ep.name}</Typography>
             })}
         </Paper>
       </Grid>
@@ -75,7 +74,6 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
 }
 
 const mapStateToProps = (state) => {
-
   const { character, pending } = state.character;
 
   if (Array.isArray(character.episode))
@@ -85,7 +83,6 @@ const mapStateToProps = (state) => {
     character,
     pending,
   }
-
 };
 
 const mapDispatchToProps = {

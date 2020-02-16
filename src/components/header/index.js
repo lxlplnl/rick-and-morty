@@ -14,13 +14,17 @@ const getLeftIcon = (history, key) => {
 
   switch (key) {
     case 'back' : {
-      return <ArrowBackIosIcon onClick={() => history.goBack()} />
+      return <IconButton color="inherit" onClick={() => history.goBack()}>
+        <ArrowBackIosIcon />
+      </IconButton>
     }
     case 'home' : {
-      return <HomeIcon onClick={() => history.push('/')} />
+      return <IconButton color="inherit" onClick={() => history.push('/')}>
+        <HomeIcon />
+      </IconButton>
     }
     default :
-      return undefined;
+      return <></>;
   }
 };
 
@@ -35,11 +39,7 @@ function Header({ headerData }) {
       <HideOnScroll>
         <AppBar>
           <Toolbar>
-            {leftIcon &&
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              {leftIcon}
-            </IconButton>
-            }
+            {leftIcon}
             <Typography variant="h6">{title}</Typography>
           </Toolbar>
         </AppBar>

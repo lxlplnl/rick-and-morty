@@ -7,7 +7,7 @@ import { setHeader } from "../../redux/actions/runtime";
 function Home({ setHeader }) {
   useEffect(() => {
     setHeader({ title: 'Characters', leftIconKey: null })
-  }, []);
+  }, [setHeader]);
 
   return <Container>
     <CharacterList />
