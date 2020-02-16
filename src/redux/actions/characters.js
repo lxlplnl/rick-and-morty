@@ -1,13 +1,15 @@
 import {
+  _INFINITY,
   FETCH_CHARACTERS_FULFILLED,
   FETCH_CHARACTERS_PENDING,
   FETCH_CHARACTERS_REJECTED
 } from '../constants/characters';
 import Api from '../../services/api';
 
-const fulfilled = data => ({
-  type: FETCH_CHARACTERS_FULFILLED,
-  data
+const fulfilled = (data, page = 1, asInfinity) => ({
+  type: FETCH_CHARACTERS_FULFILLED + (asInfinity ? _INFINITY : ''),
+  data,
+  page
 });
 
 const rejected = error => ({
@@ -22,7 +24,22 @@ const pending = () => ({
 export const getCharacters = (page) => dispatch => {
   dispatch(pending());
   return Api.getCharacters(page).then(response => {
-    dispatch(fulfilled(response.data.data.characters))
+    dispatch(fulfilled(response.data.data.characters, page))
+  }).catch(err => {
+    dispatch(rejected(err))
+  })
+};
+
+export const getCharactersInfinity = () => (dispatch, getState) => {
+  const { characters: { pagination, page } } = getState();
+  let nextPage = page + 1;
+  if (pagination.pages < nextPage) return;
+
+  dispatch(pending());
+
+  return Api.getCharacters(nextPage).then(response => {
+    dispatch(fulfilled(response.data.data.characters, nextPage, true
+    ))
   }).catch(err => {
     dispatch(rejected(err))
   })

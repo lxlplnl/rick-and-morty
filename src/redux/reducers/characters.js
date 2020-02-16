@@ -1,4 +1,5 @@
 import {
+  _INFINITY,
   FETCH_CHARACTERS_FULFILLED,
   FETCH_CHARACTERS_PENDING,
   FETCH_CHARACTERS_REJECTED
@@ -9,6 +10,7 @@ const initialState = {
   pending: false,
   characters: [],
   pagination: {},
+  initialized: false,
 };
 
 export const characters = (state = initialState, action) => {
@@ -18,10 +20,21 @@ export const characters = (state = initialState, action) => {
         ...state,
         pending: false,
         error: {},
-        characters: [...state.characters, ...action.data.results],
+        characters: action.data.results,
         pagination: action.data.info,
+        page: action.page,
+        initialized: true,
       };
 
+    case FETCH_CHARACTERS_FULFILLED + _INFINITY:
+      return {
+        ...state,
+        pending: false,
+        error: {},
+        characters: [...state.characters, ...action.data.results],
+        pagination: action.data.info,
+        page: action.page,
+      };
     case FETCH_CHARACTERS_PENDING:
       return {
         ...state,
