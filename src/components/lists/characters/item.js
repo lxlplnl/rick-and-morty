@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -10,7 +10,6 @@ function CharacterItem({ id, name, image }) {
 
   return (
     <ListItem
-      component={"a"}
       button
       onClick={() => history.push('/character/' + id)}>
       <ListItemAvatar>
@@ -21,4 +20,4 @@ function CharacterItem({ id, name, image }) {
   )
 }
 
-export default CharacterItem;
+export default memo(CharacterItem);
