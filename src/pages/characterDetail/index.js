@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { Container } from "@material-ui/core";
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from "react-redux";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { getCharacter } from "../../redux/actions/character";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { useStyles } from "./styles";
 import { setHeader } from "../../redux/actions/runtime";
 import { Loader } from "../../components/loader";
+import CharacterProfile from "../../components/characterProfile";
+import Episodes from "../../components/lists/episodes";
 
 function CharacterDetail({ setHeader, getCharacter, character, pending }) {
   const params = useParams();
@@ -27,9 +24,9 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
   useEffect(() => {
     const id = parseInt(params.id, 10);
 
-    if (typeof id === 'number' && id > 0)
+    if (typeof id === 'number' && id > 0) {
       getCharacter(params.id);
-    else {
+    } else {
       history.push('/not-found')
     }
   }, [getCharacter, history, params]);
@@ -40,33 +37,11 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
     {!pending &&
     <Grid container spacing={3} className={classes.paper}>
       <Grid item>
-        <Card className={classes.root}>
-          <CardMedia
-            className={classes.media}
-            image={image}
-            title={name}
-          />
-          <CardContent>
-            <Typography variant="h4">{name}</Typography>
-            <Typography
-              gutterBottom
-              color="textSecondary"
-              component="p">
-              {`${location.name} (${location.type})`}
-            </Typography>
-          </CardContent>
-        </Card>
+        <CharacterProfile classes={classes} image={image} name={name} location={location} />
       </Grid>
 
       <Grid item className={classes.item}>
-        <Paper className={classes.paper}>
-            <Typography gutterBottom variant="h5" component="h3">
-              Last 5 Episodes
-            </Typography>
-            {episode.map(ep => {
-              return <Typography key={ep.id}>{ep.name}</Typography>
-            })}
-        </Paper>
+        <Episodes classes={classes} episodes={episode} />
       </Grid>
     </Grid>
     }
