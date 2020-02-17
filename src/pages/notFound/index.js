@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 
-function NotFound({ setHeader }) {
+export function NotFound({ setHeader }) {
   const history = useHistory();
 
   useEffect(() => {

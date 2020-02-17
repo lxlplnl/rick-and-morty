@@ -6,7 +6,7 @@ import List from "@material-ui/core/List";
 import { Loader } from "../../loader";
 import { Container } from "@material-ui/core";
 
-function CharacterList({ getCharacters, getCharactersInfinity, characters, pending, initialized }) {
+export function CharacterList({ getCharacters, getCharactersInfinity, characters, pending, initialized }) {
 
   useEffect(() => {
     if (!initialized) getCharacters();
