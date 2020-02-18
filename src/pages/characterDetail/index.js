@@ -24,7 +24,7 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
   useEffect(() => {
     const id = parseInt(params.id, 10);
 
-    if (typeof id === 'number' && id > 0) {
+    if (!isNaN(id) && id > 0) {
       getCharacter(params.id);
     } else {
       history.push('/not-found')
