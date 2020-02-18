@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";

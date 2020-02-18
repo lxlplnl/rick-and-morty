@@ -1,4 +1,5 @@
 import {
+  CLEAR_CHARACTER,
   FETCH_CHARACTER_FULFILLED,
   FETCH_CHARACTER_PENDING,
   FETCH_CHARACTER_REJECTED
@@ -33,6 +34,11 @@ export const character = (state = initialState, action) => {
         pending: false,
         error: action.error
       };
+
+    case CLEAR_CHARACTER:
+      return {
+        ...initialState
+      }
 
     default:
       return state

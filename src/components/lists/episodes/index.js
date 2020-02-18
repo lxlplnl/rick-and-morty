@@ -7,7 +7,7 @@ function Episodes({ classes, episodes }) {
     <Typography gutterBottom variant="h5" component="h3">
       Last 5 Episodes
     </Typography>
-    {episodes.map(ep => {
+    {episodes && episodes.map(ep => {
       return <Typography key={ep.id}>{ep.name}</Typography>
     })}
   </Paper>;

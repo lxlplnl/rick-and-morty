@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Container } from "@material-ui/core";
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getCharacter } from "../../redux/actions/character";
+import { clearCharacter, getCharacter } from "../../redux/actions/character";
 import Grid from "@material-ui/core/Grid";
 import { useStyles } from "./styles";
 import { setHeader } from "../../redux/actions/runtime";
@@ -10,7 +10,7 @@ import { Loader } from "../../components/loader";
 import CharacterProfile from "../../components/characterProfile";
 import Episodes from "../../components/lists/episodes";
 
-function CharacterDetail({ setHeader, getCharacter, character, pending }) {
+function CharacterDetail({ setHeader, getCharacter, clearCharacter, character, pending }) {
   const params = useParams();
   const history = useHistory();
   const classes = useStyles();
@@ -18,18 +18,25 @@ function CharacterDetail({ setHeader, getCharacter, character, pending }) {
   const { name, image, location, episode } = character;
 
   useEffect(() => {
-    setHeader({ title: 'Character Detail', leftIconKey: 'back' })
-  }, [setHeader]);
+    setHeader({ title: 'Character Detail', leftIconKey: 'back' });
+    return clearCharacter
+  }, []);
 
   useEffect(() => {
     const id = parseInt(params.id, 10);
 
     if (!isNaN(id) && id > 0) {
-      getCharacter(params.id);
+      getCharacter(id);
     } else {
       history.push('/not-found')
     }
-  }, [getCharacter, history, params]);
+  }, [params.id]);
+
+  useEffect(() => {
+    if (character.id === null && !pending) {
+      history.push('/not-found');
+    }
+  }, [character.id, pending]);
 
 
   return <Container>
@@ -62,7 +69,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getCharacter,
-  setHeader
+  clearCharacter,
+  setHeader,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterDetail);

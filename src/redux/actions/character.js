@@ -1,4 +1,5 @@
 import {
+  CLEAR_CHARACTER,
   FETCH_CHARACTER_FULFILLED,
   FETCH_CHARACTER_PENDING,
   FETCH_CHARACTER_REJECTED
@@ -19,6 +20,8 @@ const rejected = error => ({
 const pending = () => ({
   type: FETCH_CHARACTER_PENDING
 });
+
+export const clearCharacter = () => ({ type: CLEAR_CHARACTER });
 
 export const getCharacter = (id) => dispatch => {
   dispatch(pending());

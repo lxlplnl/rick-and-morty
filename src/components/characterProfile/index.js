@@ -13,12 +13,12 @@ function CharacterProfile({ classes, image, name, location }) {
     />
     <CardContent>
       <Typography variant="h4">{name}</Typography>
-      <Typography
+      {location && <Typography
         gutterBottom
         color="textSecondary"
         component="p">
         {`${location.name} (${location.type})`}
-      </Typography>
+      </Typography>}
     </CardContent>
   </Card>;
 }
