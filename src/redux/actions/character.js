@@ -4,6 +4,7 @@ import {
   FETCH_CHARACTER_REJECTED
 } from '../constants/character';
 import Api from '../../services/api';
+import { openSnackbar } from "./runtime";
 
 const fulfilled = data => ({
   type: FETCH_CHARACTER_FULFILLED,
@@ -24,6 +25,7 @@ export const getCharacter = (id) => dispatch => {
   return Api.getCharacter(id).then(response => {
     dispatch(fulfilled(response.data.data))
   }).catch(err => {
-    dispatch(rejected(err))
+    dispatch(rejected(err));
+    dispatch(openSnackbar('An error occurred. Please try again later'));
   })
 };

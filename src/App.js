@@ -10,6 +10,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import CharacterDetail from "./pages/characterDetail";
 import Header from "./components/header";
+import AppSnackbar from "./components/snackbar";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
+        <AppSnackbar />
       </ThemeProvider>
     </Provider>
   );

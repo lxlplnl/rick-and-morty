@@ -5,6 +5,7 @@ import {
   FETCH_CHARACTERS_REJECTED
 } from '../constants/characters';
 import Api from '../../services/api';
+import { openSnackbar } from "./runtime";
 
 const fulfilled = (data, page = 1, asInfinity) => ({
   type: FETCH_CHARACTERS_FULFILLED + (asInfinity ? _INFINITY : ''),
@@ -26,7 +27,8 @@ export const getCharacters = (page) => dispatch => {
   return Api.getCharacters(page).then(response => {
     dispatch(fulfilled(response.data.data.characters, page))
   }).catch(err => {
-    dispatch(rejected(err))
+    dispatch(rejected(err));
+    dispatch(openSnackbar('An error occurred. Please try again later'));
   })
 };
 
@@ -38,9 +40,9 @@ export const getCharactersInfinity = () => (dispatch, getState) => {
   dispatch(pending());
 
   return Api.getCharacters(nextPage).then(response => {
-    dispatch(fulfilled(response.data.data.characters, nextPage, true
-    ))
+    dispatch(fulfilled(response.data.data.characters, nextPage, true))
   }).catch(err => {
-    dispatch(rejected(err))
+    dispatch(rejected(err));
+    dispatch(openSnackbar('An error occurred. Please try again later'));
   })
 };
