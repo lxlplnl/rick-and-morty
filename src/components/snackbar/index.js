@@ -6,7 +6,7 @@ import { closeSnackbar } from "../../redux/actions/runtime";
 
 const SNACKBAR_DURATION = 4000;
 
-function AppSnackbar({ message, open, closeSnackbar }) {
+function AppSnackbar({ snackbar: { message, open, closeSnackbar } }) {
   return (
     <Snackbar open={open} autoHideDuration={SNACKBAR_DURATION} onClose={closeSnackbar}>
       <SnackbarContent message={message} />
@@ -15,7 +15,7 @@ function AppSnackbar({ message, open, closeSnackbar }) {
 }
 
 const mapStateToProps = state => ({
-  ...state.runtime.snackbar
+  snackbar: state.runtime.snackbar
 });
 
 const mapDispatchToProps = {

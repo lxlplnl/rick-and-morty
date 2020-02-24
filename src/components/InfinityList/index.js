@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 import List from "@material-ui/core/List";
-import { Container } from "@material-ui/core";
 import { Loader } from "../loader";
 
 export function InfinityList({ initializer, onScrollEnd, list, pending, initialized, renderListThumb, showLoader = true }) {
@@ -19,12 +18,12 @@ export function InfinityList({ initializer, onScrollEnd, list, pending, initiali
     return () => window.removeEventListener('scroll', handleScroll)
   }, [handleScroll, initialized]);
 
-  return <Container>
+  return <>
     {showLoader && <Loader pending={pending} />}
     <List>
       {list.map(renderListThumb)}
     </List>
-  </Container>
+  </>
 }
 
 export default InfinityList;

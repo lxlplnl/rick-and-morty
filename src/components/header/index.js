@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import HomeIcon from '@material-ui/icons/Home';
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 
 const getLeftIcon = (history, key) => {
@@ -29,8 +29,7 @@ const getLeftIcon = (history, key) => {
 };
 
 
-function Header({ headerData }) {
-  const { title, leftIconKey } = headerData;
+function Header({ headerData: { title, leftIconKey } }) {
   const history = useHistory();
 
   const leftIcon = getLeftIcon(history, leftIconKey);

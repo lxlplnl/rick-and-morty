@@ -14,4 +14,8 @@ function Home({ setHeader }) {
   </Container>
 }
 
-export default connect(undefined, { setHeader })(Home);
+let mapDispatchToProps = {
+  setHeader
+};
+
+export default connect(undefined, mapDispatchToProps)(Home);
