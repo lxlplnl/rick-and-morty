@@ -2,7 +2,7 @@ import {
   _INFINITY,
   FETCH_CHARACTERS_FULFILLED,
   FETCH_CHARACTERS_PENDING,
-  FETCH_CHARACTERS_REJECTED
+  FETCH_CHARACTERS_REJECTED,
 } from '../constants/characters';
 
 const initialState = {
@@ -39,19 +39,17 @@ export const characters = (state = initialState, action) => {
       return {
         ...state,
         pending: true,
-        error: {}
+        error: {},
       };
 
     case FETCH_CHARACTERS_REJECTED:
       return {
         ...state,
         pending: false,
-        error: action.error
+        error: action.error,
       };
 
     default:
-      return state
+      return state;
   }
 };
-
-

@@ -1,30 +1,25 @@
-import React from 'react'
-import { MemoryRouter } from "react-router-dom";
-import { render } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import { CharacterList } from './index';
 
 function renderWithRouter(ui) {
-  return render(
-    <MemoryRouter>
-      {ui}
-    </MemoryRouter>
-  );
+  return render(<MemoryRouter>{ui}</MemoryRouter>);
 }
 
 test('Render CharacterList Page', () => {
-
   const characters = [
     {
-      "id": "1",
-      "name": "Rick Sanchez",
-      "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+      id: '1',
+      name: 'Rick Sanchez',
+      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
     },
     {
-      "id": "2",
-      "name": "Morty Smith",
-      "image": "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
-    }
+      id: '2',
+      name: 'Morty Smith',
+      image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+    },
   ];
 
   const getCharacters = jest.fn();
@@ -36,7 +31,8 @@ test('Render CharacterList Page', () => {
       getCharactersInfinity={getCharactersInfinity}
       characters={characters}
       pending={false}
-      initialized />
+      initialized
+    />,
   );
 
   characters.forEach(character => {

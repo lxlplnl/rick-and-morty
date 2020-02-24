@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Provider } from "react-redux";
-import AppStore from './redux/store/appStore';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from "./pages/home";
-import NotFound from "./pages/notFound";
-import theme from './theme';
 import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import CharacterDetail from "./pages/characterDetail";
-import Header from "./components/header";
-import AppSnackbar from "./components/snackbar";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppStore from './redux/store/appStore';
+import Home from './pages/home';
+import NotFound from './pages/notFound';
+import theme from './theme';
+import CharacterDetail from './pages/characterDetail';
+import Header from './components/header';
+import AppSnackbar from './components/snackbar';
 
 function App() {
   return (

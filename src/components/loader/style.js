@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
   container: {
@@ -6,6 +6,6 @@ export const useStyles = makeStyles({
     width: '100%',
     height: '100%',
     top: 0,
-    left: 0
+    left: 0,
   },
 });

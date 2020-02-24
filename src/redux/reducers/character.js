@@ -2,7 +2,7 @@ import {
   CLEAR_CHARACTER,
   FETCH_CHARACTER_FULFILLED,
   FETCH_CHARACTER_PENDING,
-  FETCH_CHARACTER_REJECTED
+  FETCH_CHARACTER_REJECTED,
 } from '../constants/character';
 
 const initialState = {
@@ -25,24 +25,22 @@ export const character = (state = initialState, action) => {
       return {
         ...state,
         pending: true,
-        error: {}
+        error: {},
       };
 
     case FETCH_CHARACTER_REJECTED:
       return {
         ...state,
         pending: false,
-        error: action.error
+        error: action.error,
       };
 
     case CLEAR_CHARACTER:
       return {
-        ...initialState
-      }
+        ...initialState,
+      };
 
     default:
-      return state
+      return state;
   }
 };
-
-

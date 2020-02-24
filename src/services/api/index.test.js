@@ -1,9 +1,11 @@
-import Api from '../../../src/services/api';
+import Api from '.';
 
 describe('Rick And Morty Api with Graphql', () => {
   test('getCharacters', () => {
     Api.getCharacters(1).then(response => {
-      const { data: { data } } = response;
+      const {
+        data: { data },
+      } = response;
       expect(data.results).toHaveLength(20);
       expect(data.info).toHaveProperty('count');
       expect(data.info).toHaveProperty('pages');
@@ -11,11 +13,13 @@ describe('Rick And Morty Api with Graphql', () => {
       expect(data.results[0]).toHaveProperty('id');
       expect(data.results[0]).toHaveProperty('name');
       expect(data.results[0]).toHaveProperty('image');
-    })
+    });
   });
   test('getCharacters', () => {
     Api.getCharacter(1).then(response => {
-      const { data: { character, episode } } = response;
+      const {
+        data: { character, episode },
+      } = response;
       expect(character).toHaveProperty('id');
       expect(character).toHaveProperty('name');
       expect(character).toHaveProperty('image');
@@ -28,6 +32,6 @@ describe('Rick And Morty Api with Graphql', () => {
 
       expect(episode).toBeInstanceOf(Array);
       expect(episode.length).toBeGreaterThan(30);
-    })
-  })
+    });
+  });
 });

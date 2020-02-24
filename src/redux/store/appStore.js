@@ -1,14 +1,14 @@
-import reducers from '../reducers'
-import { createLogger } from 'redux-logger'
+import { createLogger } from 'redux-logger';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
+import reducers from '../reducers';
 
 const middleware = [thunk];
 
 const __DEV__ = process.env.NODE_ENV === 'development';
 
 if (__DEV__) {
-  middleware.push(createLogger())
+  middleware.push(createLogger());
 }
 
 const composeEnhancers =

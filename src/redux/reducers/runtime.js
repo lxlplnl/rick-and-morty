@@ -1,4 +1,8 @@
-import { CLOSE_SNACKBAR, OPEN_SNACKBAR, SET_HEADER, } from '../constants/runtime';
+import {
+  CLOSE_SNACKBAR,
+  OPEN_SNACKBAR,
+  SET_HEADER,
+} from '../constants/runtime';
 
 const initialState = {
   header: {
@@ -7,8 +11,8 @@ const initialState = {
   },
   snackbar: {
     message: undefined,
-    open: false
-  }
+    open: false,
+  },
 };
 
 export const runtime = (state = initialState, action) => {
@@ -16,7 +20,7 @@ export const runtime = (state = initialState, action) => {
     case SET_HEADER:
       return {
         ...state,
-        header: { ...state.header, ...action.data }
+        header: { ...state.header, ...action.data },
       };
 
     case OPEN_SNACKBAR:
@@ -24,8 +28,8 @@ export const runtime = (state = initialState, action) => {
         ...state,
         snackbar: {
           message: action.message,
-          open: true
-        }
+          open: true,
+        },
       };
 
     case CLOSE_SNACKBAR:
@@ -33,13 +37,11 @@ export const runtime = (state = initialState, action) => {
         ...state,
         snackbar: {
           message: undefined,
-          open: false
-        }
+          open: false,
+        },
       };
 
     default:
-      return state
+      return state;
   }
 };
-
-

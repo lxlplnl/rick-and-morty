@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://rickandmortyapi.com/graphql/',
@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
 
 class _Api {
   constructor(requester) {
-    this.requester = requester
+    this.requester = requester;
   }
 
   getCharacters = (page = 1) => {
@@ -21,12 +21,12 @@ class _Api {
             info { count, pages }
             results { id, name, image }
           }
-        }`
-      }
-    })
-  }
+        }`,
+      },
+    });
+  };
 
-  getCharacter = (id) => {
+  getCharacter = id => {
     return this.requester({
       method: 'POST',
       data: {
@@ -39,13 +39,13 @@ class _Api {
             location {id,name,type}
             episode {id,name}
           }
-        }`
-      }
-    })
-  }
+        }`,
+      },
+    });
+  };
 }
 
 const Api = new _Api(axiosInstance);
 Object.freeze(Api);
 
-export default Api
+export default Api;
