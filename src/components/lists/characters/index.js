@@ -1,33 +1,18 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { getCharacters, getCharactersInfinity } from "../../../redux/actions/characters";
 import CharacterItem from "./item";
-import List from "@material-ui/core/List";
-import { Loader } from "../../loader";
-import { Container } from "@material-ui/core";
+import InfinityList from "../../InfinityList";
 
 export function CharacterList({ getCharacters, getCharactersInfinity, characters, pending, initialized }) {
-
-  useEffect(() => {
-    if (!initialized) getCharacters();
-  }, [getCharacters, initialized]);
-
-  const handleScroll = useCallback(() => {
-    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-    getCharactersInfinity()
-  }, [getCharactersInfinity]);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [handleScroll, initialized]);
-
-  return <Container>
-    <Loader pending={pending} />
-    <List>
-      {characters.map(character => <CharacterItem key={character.id} {...character} />)}
-    </List>
-  </Container>
+  return <InfinityList
+    initializer={getCharacters}
+    initialized={initialized}
+    onScrollEnd={getCharactersInfinity}
+    list={characters}
+    pending={pending}
+    renderListThumb={(character) => <CharacterItem key={character.id} {...character} />}
+  />
 }
 
 const mapStateToProps = (state) => ({
